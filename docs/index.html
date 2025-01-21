@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Survival Model Explainer</title>
+    <title>survinsights</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -49,38 +49,38 @@
 </head>
 <body>
     <header>
-        <h1>Survival Model Explainer</h1>
+        <h1>survinsights</h1>
         <p>Enhance the interpretation of survival models with personalized insights and tools.</p>
     </header>
     <section>
         <h2>About the Package</h2>
         <p>
-            The <strong>Survival Model Explainer</strong> package is a Python tool designed to simplify the interpretation of survival models.
+            The <strong>survinsights</strong> package is a Python tool designed to simplify the interpretation of survival models.
             It helps users:
         </p>
         <ul>
-            <li>Explain survival predictions with methods like SHAP and ICE.</li>
+            <li>Explain survival predictions with model-agnostic methods (SurvSHAP, SurvLIME, PFI, etc).</li>
             <li>Identify the most suitable interpretation methods for specific datasets.</li>
             <li>Analyze longitudinal data and dynamic time-dependent survival models.</li>
         </ul>
         <h2>Installation</h2>
-        <pre><code>pip install survival-model-explainer</code></pre>
+        <pre><code>pip install survinsights</code></pre>
         <h2>Getting Started</h2>
         <p>Here's a quick example of how to use the package:</p>
         <pre><code>
-from survival_explainer import explain_model
+from survinsights import explainer
 
 # Load your survival model and dataset
 model = ...
 data = ...
 
 # Get explanations
-explanations = explain_model(model, data)
+explanations = model_explainer(model, data)
         </code></pre>
-        <a class="btn" href="https://github.com/<username>/survival-model-explainer">View on GitHub</a>
+        <a class="btn" href="https://github.com/TeamHeKA/survinsights">View on GitHub</a>
     </section>
     <footer>
-        <p>&copy; 2025 Your Name. All rights reserved.</p>
+        <p>&copy; Copyright 2024-2025 Inria</p>
     </footer>
 </body>
 </html>
