@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - SurvInsights</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #007acc;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            width: 100%;
+        }
+        /* nav {
+            display: flex;
+            justify-content: center;
+            background-color: #005f99;
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        } */
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            float: left;
+        }
+        .sidebar h3 {
+            margin-top: 0;
+        }
+        .sidebar a {
+            display: block;
+            padding: 8px;
+            color: #007acc;
+            text-decoration: none;
+            margin-bottom: 5px;
+            border-radius: 3px;
+        }
+        .sidebar a:hover {
+            background-color: #007acc;
+            color: white;
+        }
+        .content {
+            margin-left: 260px;
+            margin-bottom: 50px;
+            padding: 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #007acc;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+        }
+        .code {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: Consolas, Monaco, "Courier New", Courier, monospace;
+        }
+        .formula {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: "Times New Roman", serif;
+            font-size: 1.1em;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            color: white;
+            background-color: #007acc;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #005f99;
+        }
+    </style>
+    <script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <header>
+        <!-- <h1>API Documentation</h1>
+        <p>Comprehensive details about the SurvInsights package functions.</p> -->
+        <nav>
+            <a href="../index.html" class="btn">survinsights 0.0.1</a>
+            <a href="../user_guide/index.html" class="btn">User Guide</a>
+            <a href="../api/index.html" class="btn">API Documentation</a>
+        </nav>
+    </header>
+    <!-- <nav>
+        <a href="#local-methods">Local Methods</a>
+        <a href="#global-methods">Global Methods</a>
+        <a href="index.html">Back to Home</a>
+    </nav> -->
+    <div class="sidebar">
+        <h3>Navigation</h3>
+        <a href="local.html">Local Methods</a>
+        <a href="global.html">Global Methods</a>
+        <!-- <a href="index.html">Back to Home</a> -->
+    </div>
+    <div class="content">
+        <!-- <h2 id="local-methods">Local Methods</h2>
+        <h3><code>local_explaination</code></h3>
+        <p>Generates explanations for the prediction of a specific individual.</p>
+        <p><strong>Parameters:</strong></p>
+        <ul>
+            <li><code>model</code> (required): The survival model to explain.</li>
+            <li><code>data</code> (required): Dataset containing feature values.</li>
+            <li><code>method</code> (optional, default: <code>'shap'</code>): The explanation method to use (<code>'shap'</code>, <code>'pdp'</code>, etc.).</li>
+        </ul>
+        <div class="code">
+            <pre><code>from survinsights import local_explaination
+
+# Individual Conditional Expectation (ICE)
+explained_feature_name = "Age_in_years"
+ICE_df = local_explaination.individual_conditional_expectation(model_explainer, explained_feature_name)
+local_explaination.plot_ice(model_explainer, ICE_df, sample_id=5)</code></pre>
+        </div>
+
+        <h2 id="global-methods">Global Methods</h2>
+        <h3><code>global_explaination</code></h3>
+        <p>Generates explanations for the everage prediction of the population.</p>
+        <div class="code">
+            <pre><code>from survival_explainer import global_explaination
+        </div> -->
+    </div>
+    <footer>
+        <p>&copy; Copyright 2024-2025 Inria</p>
+    </footer>
+    <script>
+        // Highlight active link
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPath = window.location.pathname.split('/').pop();
+            const links = document.querySelectorAll('.sidebar a');
+            links.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
