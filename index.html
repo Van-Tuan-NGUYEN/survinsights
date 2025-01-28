@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SURVINSIGHTS &#8212; survinsights</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #007acc;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+        }
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #007acc;
+            color: white;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            color: white;
+            background-color: #007acc;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #005f99;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+      <!-- <h1>survinsights</h1>
+      <p>Enhance the interpretation of survival models with advanced tools.</p> -->
+      <nav>
+          <a href="index.html" class="btn">survinsights 0.0.1</a>
+          <a href="user_guide/index.html" class="btn">User Guide</a>
+          <a href="api/index.html" class="btn">API Documentation</a>
+      </nav>
+  </header>
+
+    <section>
+        <h2>About the Package</h2>
+        <p>
+            The <strong>survinsights</strong> package is a Python tool designed to simplify the interpretation of survival models.
+            It helps users:
+        </p>
+        <ul>
+            <li>Explain survival predictions with model-agnostic methods (SurvSHAP, SurvLIME, PFI, etc).</li>
+            <li>Identify the most suitable interpretation methods for specific datasets.</li>
+            <li>Analyze longitudinal data and dynamic time-dependent survival models.</li>
+        </ul>
+        <h2>Installation</h2>
+        <pre><code>pip install survinsights</code></pre>
+        <h2>Getting Started</h2>
+        <p>Here's a quick example of how to use the package:</p>
+        <pre><code>
+from survinsights import explainer
+
+# Load your survival model and dataset
+model = ...
+data = ...
+
+# Get explanations
+explanations = model_explainer(model, data)
+        </code></pre>
+        <a class="btn" href="https://github.com/TeamHeKA/survinsights">View on GitHub</a>
+    </section>
+    
+    <footer>
+        <p>&copy; Copyright 2024-2025 Inria</p>
+    </footer>
+</body>
+</html>
