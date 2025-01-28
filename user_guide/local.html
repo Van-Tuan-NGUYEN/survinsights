@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Guide - SurvInsights</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #007acc;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            width: 100%;
+        }
+        /* nav {
+            display: flex;
+            justify-content: center;
+            background-color: #005f99;
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        } */
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            float: left;
+        }
+        .sidebar h3 {
+            margin-top: 0;
+        }
+        .sidebar a {
+            display: block;
+            padding: 8px;
+            color: #007acc;
+            text-decoration: none;
+            margin-bottom: 5px;
+            border-radius: 3px;
+        }
+        .sidebar a:hover {
+            background-color: #007acc;
+            color: white;
+        }
+        .sidebar a.active {
+            color: yellowgreen;
+        }
+        .content {
+            margin-left: 260px;
+            margin-bottom: 50px;
+            padding: 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #007acc;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+        }
+        .code {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: Consolas, Monaco, "Courier New", Courier, monospace;
+        }
+        .formula {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: "Times New Roman", serif;
+            font-size: 1.1em;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            color: white;
+            background-color: #007acc;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #005f99;
+        }
+    </style>
+    <script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <header>
+        <!-- <h1>User Guide</h1>
+        <p>Instructions for using the Survinsights package.</p> -->
+        <nav>
+          <a href="../index.html" class="btn">survinsights 0.0.1</a>
+          <a href="../user_guide/index.html" class="btn">User Guide</a>
+          <a href="../api/index.html" class="btn">API Documentation</a>
+      </nav>
+    </header>
+    <!-- <nav>
+        <a href="#local-methods">Local Methods</a>
+        <a href="#global-methods">Global Methods</a>
+        <a href="index.html">Back to Home</a>
+    </nav> -->
+    <!-- <div class="sidebar">
+        <h3>Navigation</h3>
+        <a href="#local-methods">Local Methods</a>
+        <a href="#global-methods">Global Methods</a>
+        <a href="index.html">Back to Home</a>
+    </div> -->
+    <div class="sidebar">
+        <h3>Navigation</h3>
+        <a href="local.html" class="active">Local Methods</a>
+        <a href="global.html">Global Methods</a>
+        <!-- <a href="index.html">Back to Home</a> -->
+    </div>
+    <div class="content">
+
+        <!-- <h2 id="local-methods">Local Methods</h2> -->
+        <h2>Local Methods</h2>
+        
+        <h3><code>Individual Conditional Expectation (ICE)</code></h3>
+        
+        <p>Individual conditional expectation (ICE) curves provide a visual representation of how changes in a specific feature affect a model's prediction for an individual data point. 
+          These curves help describe the dependency of the model's prediction (or an approximation of the conditional expected value) on the values of a selected feature.</p>
+        
+        <p>The ICE function evaluates the model's prediction across a predefined grid of values \(x_\ell^{\text{grid}} = \{x_\ell^1, \ldots, x_\ell^G\}\) for the selected feature \(\ell\). 
+          It keeps all other features \(x_{-\ell}^i\) fixed at their respective values for the given individual \(x^i\). Mathematically, the ICE function evaluated at a specific time point \(t\) is defined as:</p>
+        
+          <div class="formula">
+            \[\text{ICE}(f, t, x^i, \ell) = f(t | x_\ell^{\text{grid}}, x_{-\ell}^i)\]
+          </div>
+
+        <h3><code>Local Interpretable Model-agnostic Explanations (LIME)</code></h3>
+      
+        
+          <p>SurvLIME aims to explain the prediction of the black-box survival model by its local approximation using a simple, interpretable surrogate model (Cox model), which can be defined by</p>
+            \[\Lambda^{\text{Cox-PH}}(t) = \Lambda_0^{\text{Cox-PH}}(t) \exp(\omega^\top x)\]
+        <p>where \(\Lambda_0^{\text{Cox-PH}}(t)\) can be estimated bt Nelson-Aalen estimator</p>
+        <p>In order to explain the prediction for an individual \(x^i\):</p>
+
+        <ul>
+
+          <li>Generate a neiborghood set of \(p\) points \(\{x^i_1, \ldots , x^i_p\}\) around \(x^i\)</li>
+
+          <li>Optimize the coefficients \(\omega\) of the surrogate model so that the average distance between the CHF of explained model and the surrogate model is minimized over all \(x^i_u \in \{x^i_1, \ldots , x^i_p\}\)</li>
+          <div class="formula">
+              \[\min_{\omega} \sum_{u=1}^p w_u \sum_{v=1}^q r_{uv}^2 \big[ \text{ln} \Lambda(t_v | x^i_u) - \text{ln} \Lambda_0^{\text{Cox-PH}}(t_v | x^i_u) - \omega^\top x^i_u\big]^2 (t_{v+1} - t_v)\]
+          </div>    
+          <p>where \(w_u = K(x^i_u, x^i)\) is the distance weight between \(x^i_u\) and \(x^i\) and can be computed by some kernel methods \(K\), and \(r_{uv} = \frac{\Lambda(t_v | x^i_u)}{ln \Lambda(t_v | x^i_u)}\) is “straighten” weight to reduce the possible huge difference caused by the logarithm distance. </p>
+        </ul>
+
+        <h3><code>SHapley Additive exPlanations (SHAP)</code></h3>
+
+        <p>The goal of SHAP is to explain the prediction of an instance \(x\) by computing the contribution of each feature \(\phi_\ell \in \{\phi_1, \ldots, \phi_L\}\) to the prediction \(f(x)\). 
+          The SHAP explanation method computes Shapley values from coalitional game theory. The Shapley value for a feature \(\ell \in \{1, \ldots, L\}\) of an instance \(x\) is given by:</p>
+
+        \[\phi_\ell(f_x) = \sum_{S \subseteq N \setminus \{\ell\}}\frac{\vert S \vert ! (\vert N \vert - \vert S \vert - 1)}{\vert N \vert}\big[f_x(S \cup \{\ell\}) - f_x(S)\big]\]
+        
+        <p>where \(N\) is the set of all features, \(S\) is a subset of features excluding \(i\) (a coalition), \(f(S)\) is the model's prediction when only the features in \(S\) are used, \(f(S \cup \{\ell\})\) is the model's prediction when feature \(\ell\) is added to \(S\), and</p>
+        
+        \[f_x(S) = \int f(x_1, \ldots, x_L)dP_{x \notin S} - E_X(f(X))\]
+        
+        <p>is the prediction for feature values in set \(S\) that are marginalized over features that are not included in set \(S\). Then, the feature contributions must add up to the difference of prediction for \(x\) and the average.</p>
+
+        \[\sum_{\ell=1}^L \phi_\ell = f(x) - E_X(f(X))\]
+
+        <p>SHAP assumes that the model's prediction can be decomposed into a sum of contributions from individual features. The Shapley value explanation is represented as an additive feature attribution method, a linear model. That view connects LIME and Shapley values. SHAP specifies the explanation as:</p>
+
+        \[f(x) = \phi_0 + \sum_{\ell = 1}^L \phi_\ell z_{\ell},\]
+
+        <p>where \(z = \{1, \ldots, 1\} \in \mathbb{R}^L\) and \(\phi_0 = E_X(f(X))\). Calculating Shapley values \(\phi\) directly is computationally expensive. To make SHAP values feasible, approximations and optimizations for \(\phi\) are used depending on the model type.</p>
+        
+        <ul>
+          
+          <li>TreeSHAP (Optimized for Tree-Based Models)</li>
+          <li>KernelSHAP (Model-Agnostic Method)</li>
+        </ul>
+
+
+        <p>KernelSHAP is a kernel-based estimation approach for Shapley values inspired by local surrogate models (like LIME, and in this case, by a linear model \(\Phi^\top z\)). KernelSHAP, which is applied to explain the prediction of individual \(x_i\), consists of six steps:</p>
+        <ul>
+          <li>Sample coalitions \(z_k = (z_{k1}, \ldots, z_{kL}) \in \{0, 1\}^L\), \(k=\{1, \ldots, K\}\) (1 = feature present in coalition, 0 = feature absent).</li>
+          <li>Get prediction for each \(z_k\) by first converting \(z_k\) to the original feature space \(h(x_i, z_k)\) by keep the value of features in \(x_i\) whose \(z_k=1\) and replace the value of features in \(x_i\) whose \(z_k=0\) by a randomly sampled value from the distribution of corresponding feature.</li>
+          <li>Get prediction \(f(h(x_i, z_k))\).</li>
+          <li>Compute the weight for each \(z_k\) with the SHAP kernel</li>
+          \[\omega_k = \frac{p-1}{{p \choose s} s(p-s)}.\]
+          <li>Fit weighted linear model</li>
+          \[\min_{\Phi} \sum_{k=1}^K \omega_k \big(f(h(x_i, z_k)) - \Phi^\top z_k \big)^2\]
+          <p>where</p>
+          \[\Phi = (\phi_1, \ldots, \phi_L).\]
+          <li>Return Shapley values \(\Phi\)  the coefficients from the linear model.</li>
+          \[\Phi = (Z^\top \Omega Z)^{-1} Z^\top \Omega Y\]
+          <p>where,</p>
+          \[Z = [z_1, \ldots, z_K] \in \mathbb{R}^{K \times L}\]
+          \[\Omega = \text{diag}(\omega_1, \ldots, \omega_K) \in \mathbb{R}^{K \times K}\]
+          \[Y = \big[f(h(x_i, z_1)), \ldots, f(h(x_i, z_K))\big] \in \mathbb{R}^{K \times \tau}\]
+        </ul>
+
+    </div>
+    <footer>
+      <p>&copy; Copyright 2024-2025 Inria</p>
+    </footer>
+</body>
+</html>

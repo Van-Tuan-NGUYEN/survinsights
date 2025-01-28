@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Guide - SurvInsights</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #007acc;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            width: 100%;
+        }
+        /* nav {
+            display: flex;
+            justify-content: center;
+            background-color: #005f99;
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        } */
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            float: left;
+        }
+        .sidebar h3 {
+            margin-top: 0;
+        }
+        .sidebar a {
+            display: block;
+            padding: 8px;
+            color: #007acc;
+            text-decoration: none;
+            margin-bottom: 5px;
+            border-radius: 3px;
+        }
+        .sidebar a:hover {
+            background-color: #007acc;
+            color: white;
+        }
+        .sidebar a.active {
+            color: yellowgreen;
+        }
+        .content {
+            margin-left: 260px;
+            margin-bottom: 50px;
+            padding: 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #007acc;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+        }
+        .code {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: Consolas, Monaco, "Courier New", Courier, monospace;
+        }
+        .formula {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: "Times New Roman", serif;
+            font-size: 1.1em;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            color: white;
+            background-color: #007acc;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #005f99;
+        }
+    </style>
+    <script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <header>
+        <!-- <h1>User Guide</h1>
+        <p>Instructions for using the Survinsights package.</p> -->
+        <nav>
+          <a href="../index.html" class="btn">survinsights 0.0.1</a>
+          <a href="../user_guide/index.html" class="btn">User Guide</a>
+          <a href="../api/index.html" class="btn">API Documentation</a>
+      </nav>
+    </header>
+    <!-- <nav>
+        <a href="#local-methods">Local Methods</a>
+        <a href="#global-methods">Global Methods</a>
+        <a href="index.html">Back to Home</a>
+    </nav> -->
+    <!-- <div class="sidebar">
+        <h3>Navigation</h3>
+        <a href="#local-methods">Local Methods</a>
+        <a href="#global-methods">Global Methods</a>
+        <a href="index.html">Back to Home</a>
+    </div> -->
+    <!-- <div class="sidebar">
+      <h3>Navigation</h3>
+      <a href="local.html">Local Methods</a>
+      <a href="global.html">Global Methods</a>
+      <a href="index.html">Back to Home</a>
+  </div> -->
+    <div class="sidebar">
+      <h3>Navigation</h3>
+      <a href="local.html">Local Methods</a>
+      <a href="global.html" class="active">Global Methods</a>
+      <!-- <a href="index.html">Back to Home</a> -->
+    </div>
+    <div class="content">
+
+
+        <h2 id="global-methods">Global Methods</h2>
+        <h3><code>Partial Dependence Plot (PDP)</code></h3>
+        <p>The partial dependence function (PDP) describes how the expected value of the model prediction varies with respect to a chosen explanatory variable. 
+          This is achieved by evaluating the model's behavior across a predefined grid points \(x_\ell^{\text{grid}} = \{x_\ell^1, \ldots, x_\ell^G\}\) for a selected feature \(\ell\), while all other variables fluctuate following their respective marginal distributions.</p>
+
+        <p>In practice, a one-dimensional PDP is estimated as the average of the Individual Conditional Expectation (ICE) profiles across all \(n\) observations in the dataset \(X = \{x^1, \ldots, x^n\}\). Mathematically, this is expressed as:
+        <div class="formula">
+        \[\text{PDP}(f, t, \ell) = \frac{1}{n}\sum_{i=1}^n f(t | x_\ell^{\text{grid}}, x_{-\ell}^i)\]
+        </div>
+
+        <h3><code>Accumulated Local Effects (ALE)</code></h3>
+
+        <p>In order to avoid the problem of correlated features as in PDP, ALE proposes to calculate the difference (instead of average) in prediction based on the conditional distribution pg features</p>
+
+        <p><i>Marginal plot (M plot)</i></p>
+        <div class="formula">
+          \begin{align}
+            \text{M-plot}(t, f, \ell) &=  E_{X_{-\ell}}(f(t | X) | X_\ell = x_\ell) \\
+                                &=  \int_{-\inf}^{\inf} f(t | X) dPX_{-\ell} | X_\ell = x_\ell
+          \end{align}
+        </div>
+
+        <p>Estimation</p>
+          \[\text{M-plot}(t, f, \ell) =  \frac{1}{\#N(X_\ell)} \sum_{i \in N(x_\ell)} f(t | X_{-\ell}^i),\]
+        </p>where \(N(x_\ell)\) is a set of individuals for which the value of its feature \(\ell\) all into the small neiborghood of \(x_\ell\). This method can handle the problem of unrealistic sample but still uncover the pure effect of interest feature if they have correlation with others features.
+
+        <p>ALE handle this problem of M-plot by averaging the changes of the predictionns \(\frac{d f(t | X_\ell, X_{-\ell})}{d X_\ell}\), not the prediction itself. 
+          The change is defined as the partial derivative (local effect). Then ALE average the local effect over the conditional distribution similar to M-plot to avoid the extrapolation (unrealistic samples). Lastly, it accumuate  (integrate) the averaged local effect</p>
+        <div class="formula">
+          \[\text{ALE}(f, t, \ell) = \int_{q^0_\ell}^{x^{\star}} E_{X_{-\ell} | X_\ell = x_\ell} \big(\frac{\partial f(t | X)}{\partial X_\ell} | X_\ell = q_\ell \big) dq_\ell,\]
+        </div>
+        <p>where the value of feature \(\ell\) is splited into \(K\) interval \(q^k_\ell \in \{q^0_\ell, \ldots, q^K_\ell\}\) in which \(q^0_\ell = \min(X_\ell)\) and \(q^K_\ell = \max(X_\ell)\)</p> 
+
+        <p>Estimation</p>
+        \[\text{ALE}(f, t, \ell) =  \sum_{k=1}^{k_\ell(x^\star)}\frac{1}{\#N(q^k_\ell)} \sum_{i \in N(q^k_\ell)} f(t | q_\ell^k, X_{-\ell}^i) - f(t | q_\ell^{k-1}, X_{-\ell}^i),\]
+ 
+        <p>where \(k_\ell(x^\star)\) is the interval of feature \(\ell\) hold \(x^\star\)</p>
+        
+        <h3><code>Permutation Feature Importance (PFI)</code></h3>
+
+        <p>PFI measures how much the model's prediction accuracy decreases when the values of a specific feature are randomly shuffled, breaking the relationship between the feature and the true outcome. 
+          A feature is “important” if shuffling its values increases the model error, because in this case the model relied on the feature for the prediction. 
+          A feature is “unimportant” if shuffling its values leaves the model error unchanged, because in this case the model ignored the feature for the prediction.</p>
+
+        <p>To compute the PFI for a specific feature \(\ell\), follow these steps:</p>
+        <ul>
+          <li>Estimate the model loss \(L(t, f(t | X))\).</li>
+          <li>Create a perturbed dataset \(\tilde{X}\) by randomly shuffling the values of \(X_\ell\) (i.e: \(\tilde{X}_\ell = \text{shuffle}\{X_\ell\}\)) while keeping other features in \(X\) unchanged.</li>
+          <li>Compute the loss \(L(t, f(t | \tilde{X}))\).</li>
+          <li>Calculate the PFI as the differnce between \(L(t, f(t | \tilde{X}))\) and \(L(t, f(t | X))\), which can be \(L(t, f(t | X)) - L(t, f(t | \tilde{X}))\), or \(\frac{L(t, f(t | X))}{L(t, f(t | \tilde{X}))}\)</li>
+        </ul>
+
+        <h3><code>Feature Interation</code></h3>
+        
+        <p>Friedman’s H-statistic measures the degree of interaction between two features relative to their individual contributions. For two specific features \(\ell\) and \(k\), the H-statistic is defined as</p>
+        <div class="formula">
+          \[H_{\ell k}^2(t) = \frac{\sum_{i=1}^n [\text{PDP}(f, t , X^i_\ell, X^i_k) - \text{PDP}(f, t , X^i_\ell) - \text{PDP}(f, t , X^i_k)]^2}{\sum_{i=1}^n [\text{PDP}(f, t , X^i_\ell, X^i_k)]^2}.\]
+        </div>
+
+    </div>
+    <footer>
+      <p>&copy; Copyright 2024-2025 Inria</p>
+    </footer>
+</body>
+</html>
